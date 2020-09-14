@@ -1,0 +1,28 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-east-1",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "elasticsearch-template*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["924285731856"],
+      "most_recent": true
+    },
+    "instance_type": "t2.small",
+    "ssh_username": "ec2-user",
+    "ami_name": "kibana-template {{timestamp}}",
+    "tags" : {
+                "Name": "DemoKibanaAMI"
+        }
+  }],
+
+"provisioners": [  {
+      "type": "shell",
+      "script": "KibanaCreation.sh"
+    }
+  ]
+
+}
